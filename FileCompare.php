@@ -4,7 +4,7 @@ class File_Compare
 {
     private $_delSources = true;
 
-    private $_template = '<div class="diff" >{content}</div>';
+    private $_template = '<div class="filename" style="text-align: center" ><h1>{path}</h1></div><div class="diff" >{content}</div>';
 
     private $_differOptions = array(
         'ignoreWhitespace' => true,
@@ -107,7 +107,7 @@ class File_Compare
     {
         $serverFile = $this->_getFileContent( $serverFilePath );
         $cleanFile = $this->_getFileContent($cleanFilePath);
-        return  str_replace( "\r", PHP_EOL, $this->_getDiffHtml($cleanFile, $serverFile) );
+        return  str_replace( "\r", PHP_EOL, $this->_getDiffHtml($cleanFile, $serverFile,$serverFilePath) );
     }
 
     /**
@@ -130,13 +130,14 @@ class File_Compare
      *
      * @return string
      */
-    private function _getDiffHtml($cleanFile, $serverFile)
+    private function _getDiffHtml($cleanFile, $serverFile,$cleanFilePath)
     {
         // Initialize the diff class
         $diff = new Diff($cleanFile, $serverFile, $this->_differOptions);
         $renderer = new Diff_Renderer_Html_SideBySide();
         $diffHtml = $diff->Render($renderer);
         $template =  str_replace( '{content}',$diffHtml, $this->_template );
+        $template =  str_replace( '{path}',$cleanFilePath, $template );
         return $template;
     }
 

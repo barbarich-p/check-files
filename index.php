@@ -3,14 +3,9 @@
 <html>
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-    <title>Modified Core Files Report by Amasty</title>
+    <title>Modified Core Files Report</title>
     <link rel="stylesheet" href="styles.css" type="text/css" charset="utf-8"/>
-    <script>
-        function hideNextDiv(el) {
-            var yourUl = el.parentNode.childNodes[4];
-            yourUl.style.display = yourUl.style.display === 'none' ? '' : 'none';
-        }
-    </script>
+
 </head>
 <body>
 
